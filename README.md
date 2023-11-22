@@ -8,8 +8,8 @@ Bitcoind for Docker
 Docker image that runs the Bitcoin bitcoind node in a container for easy deployment.
 
 > [!NOTE]
-> This repository ([mu373/docker-bitcoind-image](https://github.com/mu373/docker-bitcoind-image)) is a fork with **tor preinstalled**.
-> Use `docker-compose.yml` in [mu373/docker-bitcoind](https://github.com/mu373/docker-bitcoind) to start the container.
+> - This repository ([mu373/docker-bitcoind-image](https://github.com/mu373/docker-bitcoind-image)) is a fork with **tor preinstalled**.
+> - Use `docker-compose.yml` in [mu373/docker-bitcoind](https://github.com/mu373/docker-bitcoind) to start the container.
 
 
 Requirements
