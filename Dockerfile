@@ -69,16 +69,13 @@ RUN apt update \
 COPY ./bin ./docker-entrypoint.sh /usr/local/bin/
 
 # Install tor
-
-# https://qiita.com/wancoro/items/fd212bb232961a2838c9
-# RUN mv /etc/apt/sources.list.d /etc/apt/sources.list.d.bak
 RUN apt update -y \
     && apt install -y ca-certificates apt-transport-https gpg wget
-# RUN mv /etc/apt/sources.list.d.bak /etc/apt/sources.list.d 
 
-# $(cat /etc/os-release | grep UBUNTU_CODENAME | sed "s/UBUNTU_CODENAME=//g")
-RUN echo "deb [signed-by=/usr/share/keyrings/tor-archive-keyring.gpg] https://deb.torproject.org/torproject.org jammy  main" >> /etc/apt/sources.list.d/tor.list \
-    echo "deb-src [signed-by=/usr/share/keyrings/tor-archive-keyring.gpg] https://deb.torproject.org/torproject.org jammy main" >> /etc/apt/sources.list.d/tor.list
+# We source /etc/os-release to use $UBUNTU_CODENAME such as focal, jammy, etc.
+RUN . /etc/os-release \
+    && echo "deb [signed-by=/usr/share/keyrings/tor-archive-keyring.gpg] https://deb.torproject.org/torproject.org ${UBUNTU_CODENAME} main" >> /etc/apt/sources.list.d/tor.list \
+    echo "deb-src [signed-by=/usr/share/keyrings/tor-archive-keyring.gpg] https://deb.torproject.org/torproject.org ${UBUNTU_CODENAME} main" >> /etc/apt/sources.list.d/tor.list
 
 RUN wget -qO- https://deb.torproject.org/torproject.org/A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89.asc | gpg --dearmor | tee /usr/share/keyrings/tor-archive-keyring.gpg >/dev/null
 
