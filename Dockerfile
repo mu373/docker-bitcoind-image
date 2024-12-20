@@ -54,8 +54,8 @@ EXPOSE 8332 8333
 VOLUME ["/bitcoin/.bitcoin"]
 WORKDIR /bitcoin
 
-ARG GROUP_ID=1000
-ARG USER_ID=1000
+ARG GROUP_ID=1001
+ARG USER_ID=1001
 RUN groupadd -g ${GROUP_ID} bitcoin \
     && useradd -u ${USER_ID} -g bitcoin -d /bitcoin bitcoin
 
